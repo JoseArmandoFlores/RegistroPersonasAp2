@@ -17,7 +17,7 @@ namespace RegistroPersonas.Models
         [Phone(ErrorMessage ="Formato invalido")]
         public string Telefono { get; set; }
         [Required(ErrorMessage = "Es obligatorio introducir la cedula")]
-        [StringLength(13)]
+        [StringLength(13,ErrorMessage ="No se permiten mas de 13 caracteres")]
         public string Cedula { get; set; }
         [Required(ErrorMessage = "Es obligatorio introducir la direccion")]
         public string Direccion { get; set; }
