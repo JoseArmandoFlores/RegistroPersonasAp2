@@ -22,7 +22,7 @@
                                 <div class="input-group">
                                     <InputNumber @bind-Value="Persona.PersonasId" class="form-control col-4"></InputNumber>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-primary input-group-text" @onclick="Buscar">Buscar</button>
+                                        <button type="button" class="btn btn-primary input-group-text" @onclick="Buscar"> <span class="oi oi-zoom-in"></span> Buscar</button>
                                     </div>
                                 </div>
                             </div>
@@ -32,50 +32,53 @@
                     @*Nombre*@
                     <div class="form-group">
                         <label>Nombre</label>
-                        <InputText @bind-Value="Persona.Nombre"
-                                   class="form-control"></InputText>
+                        <InputText @bind-Value="Persona.Nombre" class="form-control"></InputText>
                         <ValidationMessage For="@(()=>Persona.Nombre)" />
                     </div>
 
                     @*Telefono*@
                     <div class="form-group">
                         <label>Telefono</label>
-                        <InputText @bind-Value="Persona.Telefono"
-                                   class="form-control"></InputText>
+                        <InputText @bind-Value="Persona.Telefono" class="form-control"></InputText>
                         <ValidationMessage For="@(()=>Persona.Telefono)" />
                     </div>
 
                     @*Cedula*@
                     <div class="form-group">
                         <label>Cedula</label>
-                        <InputText @bind-Value="Persona.Cedula"
-                                     class="form-control"></InputText>
+                        <InputText @bind-Value="Persona.Cedula" class="form-control"></InputText>
                         <ValidationMessage For="@(()=>Persona.Cedula)" />
                     </div>
 
                     @*Direccion*@
                     <div class="form-group">
                         <label>Direccion</label>
-                        <InputTextArea @bind-Value="Persona.Direccion"
-                                       class="form-control"></InputTextArea>
+                        <InputTextArea @bind-Value="Persona.Direccion" class="form-control"></InputTextArea>
                         <ValidationMessage For="@(()=>Persona.Direccion)" />
                     </div>
 
                     @*Fecha de nacimiento*@
                     <div class="form-group">
                         <label>Fecha nacimiento</label>
-                        <InputDate @bind-Value="Persona.FechaNacimiento"
-                                   class="form-control"></InputDate>
+                        <InputDate @bind-Value="Persona.FechaNacimiento" class="form-control"></InputDate>
                         <ValidationMessage For="@(()=>Persona.FechaNacimiento)" />
                     </div>
+
+                    @*Balance*@
+                    <div class="form-group">
+                        <label>Balance</label>
+                        <InputNumber @bind-Value="Persona.Balance" class="form-control" ReadOnly="true"></InputNumber>
+                        <ValidationMessage For="@(()=>Persona.Balance)" />
+                    </div>
+
                 </form>
             </div>
 
             <div class="card-footer">
                 <div class="form-group text-center" display: inline-block>
-                    <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">Nuevo</button>
-                    <button type="submit" class="btn btn-lg btn-success">Guardar</button>
-                    <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">Eliminar</button>
+                    <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo"> <span class="oi oi-file"></span> Nuevo </button>
+                    <button type="submit" class="btn btn-lg btn-success"> <span class="oi oi-cloud"></span> Guardar </button>
+                    <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar"> <span class="oi oi-trash"></span> Eliminar </button>
                 </div>
 
             </div>
@@ -131,6 +134,11 @@
     {
         bool elimino;
 
+        if (Persona.Balance > 0)
+        {
+            toast.ShowError("¡No se puede eliminar una persona con Balance!");
+            return;
+        }
         elimino = PersonasBLL.Eliminar(Persona.PersonasId);
 
         if (elimino)

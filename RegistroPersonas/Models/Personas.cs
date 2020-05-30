@@ -22,8 +22,8 @@ namespace RegistroPersonas.Models
         [Required(ErrorMessage = "Es obligatorio introducir la direccion")]
         public string Direccion { get; set; }
         public DateTime FechaNacimiento { get; set; }
-
-        public Personas(int personasId, string nombre, string telefono, string cedula, string direccion, DateTime fechaNacimiento)
+        public float Balance { get; set; }
+        public Personas(int personasId, string nombre, string telefono, string cedula, string direccion, DateTime fechaNacimiento, float balance)
         {
             PersonasId = personasId;
             Nombre = nombre;
@@ -31,8 +31,8 @@ namespace RegistroPersonas.Models
             Cedula = cedula;
             Direccion = direccion;
             FechaNacimiento = fechaNacimiento;
+            Balance = balance;
         }
-
         public Personas()
         {
         }
