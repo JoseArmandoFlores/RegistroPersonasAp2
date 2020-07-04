@@ -14,7 +14,7 @@ namespace RegistroPersonas.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source = C:\Databases\Personas.db");
+            optionsBuilder.UseSqlite(@"Data Source = Data\Personas.db");
         }
 
     }
